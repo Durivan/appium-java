@@ -4,19 +4,17 @@ import appium.android.automation.steps.ContactSteps;
 import org.testng.annotations.Test;
 
 
-public class AndroidTests{
+public class AndroidTests {
 
     ContactSteps contactSteps = new ContactSteps();
 
     @Test
-    public void addNewContact(){
+    public void addNewContact() {
         contactSteps.createNewContact();
     }
 
-    //TODO new test
-
     @Test
-    public void deleteContact(){
+    public void deleteContact() {
         contactSteps.deleteContact();
     }
 

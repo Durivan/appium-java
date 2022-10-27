@@ -11,16 +11,9 @@ public class ContactPage {
     public By emailInput = By.xpath("//android.widget.EditText[@text='Email']");
     public By phoneInput = By.xpath("//android.widget.EditText[@text='Phone']");
     public By saveButton = By.id("com.android.contacts:id/editor_menu_save_button");
-
-    //TODO variable name changed
     public By contactName = By.id("com.android.contacts:id/cliv_name_textview");
-
-    //TODO new elements
-
     public By deleteButton = By.id("com.android.contacts:id/menu_delete");
-
     public By confirmDelete = By.id("android:id/button1");
-
     public By contactListEmptyMessage = By.xpath("//android.widget.TextView[@text='Your contacts list is empty']");
 
 }

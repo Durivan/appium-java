@@ -10,7 +10,7 @@ public class DataInjection {
 
     private String firstName, lastName, email, phone;
 
-    public DataInjection(){
+    public DataInjection() {
         this.firstName = faker.name().firstName();
         this.lastName = faker.name().lastName();
         this.email = faker.internet().emailAddress();
