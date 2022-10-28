@@ -1,10 +1,11 @@
 package appium.android.tests;
 
 import appium.android.automation.steps.ContactSteps;
+import appium.android.automation.utils.BaseTest;
 import org.testng.annotations.Test;
 
 
-public class AndroidTests {
+public class AndroidTests extends BaseTest {
 
     ContactSteps contactSteps = new ContactSteps();
 

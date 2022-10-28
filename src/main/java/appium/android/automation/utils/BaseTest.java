@@ -7,14 +7,14 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
-public class Config {
+public class BaseTest {
 
     private AppiumDriverLocalService service;
-    private AppiumDriver<MobileElement> driver;
+    private static AppiumDriver<MobileElement> driver;
 
-    private String platform;
-
+    @BeforeClass
     public AppiumDriver<MobileElement> startServerAndDriver() {
         this.service = new AppiumServiceBuilder()
                 .usingAnyFreePort().build();
@@ -24,26 +24,26 @@ public class Config {
             throw new RuntimeException("An appium server node is not started!");
         }
 
-        platform = System.getenv("platform");
+        String platform = System.getenv("platform");
         if (platform == null) {
             platform = "ANDROID";
         }
 
         switch (platform.toUpperCase()) {
             case "IOS":
-                this.driver = iosDriver();
+                driver = iosDriver();
                 break;
             default:
-                this.driver = androidDriver();
+                driver = androidDriver();
                 break;
         }
-        return this.driver;
+        return driver;
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void closeServerAndDriver() {
-        if (this.driver != null) {
-            this.driver.quit();
+        if (driver != null) {
+            driver.quit();
         }
         if (this.service != null) {
             this.service.stop();
@@ -67,5 +67,7 @@ public class Config {
         //TODO capabilities for iOS
     }
 
-
+    public static AppiumDriver<MobileElement> getDriver(){
+        return driver;
+    }
 }

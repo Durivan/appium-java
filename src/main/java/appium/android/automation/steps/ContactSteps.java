@@ -2,11 +2,11 @@ package appium.android.automation.steps;
 
 import appium.android.automation.models.DataInjection;
 import appium.android.automation.pageobjects.ContactPage;
-import appium.android.automation.utils.HxDriver;
+import appium.android.automation.utils.BaseTest;
 
 import static appium.android.automation.utils.HxInteractions.*;
 
-public class ContactSteps {
+public class ContactSteps extends BaseTest {
 
     ContactPage contactPage = new ContactPage();
     DataInjection dataInjection = new DataInjection();
@@ -19,8 +19,8 @@ public class ContactSteps {
         hexWrite(contactPage.emailInput, dataInjection.getEmail());
         hexWrite(contactPage.phoneInput, dataInjection.getPhone());
         hexClick(contactPage.saveButton);
-        HxDriver.getDriver().closeApp();
-        HxDriver.getDriver().launchApp();
+        getDriver().closeApp();
+        getDriver().launchApp();
         hexCompareTextInListOfElements(contactPage.contactName,
                 dataInjection.getFirstName() + " " + dataInjection.getLastName());
     }
