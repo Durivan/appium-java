@@ -1,23 +1,21 @@
 package appium.android.tests;
 
-import appium.android.automation.steps.ContactSteps;
+import appium.android.automation.actions.ContactActions;
 import appium.android.automation.utils.BaseTest;
 import org.testng.annotations.Test;
 
 
 public class AndroidTests extends BaseTest {
 
-    ContactSteps contactSteps = new ContactSteps();
+    ContactActions contactActions = new ContactActions();
 
     @Test
     public void addNewContact() {
-        contactSteps.createNewContact();
+        contactActions.createNewContact();
     }
 
     @Test
     public void deleteContact() {
-        contactSteps.deleteContact();
+        contactActions.deleteContact();
     }
-
-
 }
