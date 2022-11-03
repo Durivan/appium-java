@@ -3,6 +3,7 @@ package appium.android.automation.utils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -14,7 +15,7 @@ public class BaseTest {
     private AppiumDriverLocalService service;
     private static AppiumDriver<MobileElement> driver;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public AppiumDriver<MobileElement> startServerAndDriver() {
         this.service = new AppiumServiceBuilder()
                 .usingAnyFreePort().build();
@@ -24,7 +25,7 @@ public class BaseTest {
             throw new RuntimeException("An appium server node is not started!");
         }
 
-        String platform = System.getenv("platform");
+        String platform = System.getProperty("platform");
         if (platform == null) {
             platform = "ANDROID";
         }
@@ -52,12 +53,13 @@ public class BaseTest {
 
     private AppiumDriver<MobileElement> androidDriver() {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability("platformName", "Android");
-        desiredCapabilities.setCapability("platformVersion", "11");
-        desiredCapabilities.setCapability("automationName", "UiAutomator2");
-        desiredCapabilities.setCapability("deviceName", "Android SDK built for x86");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "11");
+        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android SDK built for x86");
         desiredCapabilities.setCapability("appPackage", "com.android.contacts");
         desiredCapabilities.setCapability("appActivity", ".activities.PeopleActivity");
+        //desiredCapabilities.setCapability(MobileCapabilityType.APP, System.getProperty("user.dir") + "/src/test/resources/testApp.apk");
         return new AndroidDriver<>(this.service.getUrl(), desiredCapabilities);
     }
 

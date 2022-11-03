@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite verbose="0" name="Appium test suite">
-    <test thread-count="5" verbose="0" name="Surefire test">
-        <classes>
-            <class name="appium.android.tests.AndroidTests"/>
-        </classes>
-    </test> <!-- Surefire test -->
-</suite> <!-- Surefire suite -->
+<suite verbose="1" name="Appium test suite">
+    <test name="smoke">
+        <groups>
+            <run>
+                <include name="smoke"/>
+                <exclude name="WIP"/>
+                <exclude name="broken"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="appium.android.tests" />
+        </packages>
+    </test>
+    <test name="regression">
+        <groups>
+            <run>
+                <include name="regression"/>
+                <exclude name="WIP"/>
+                <exclude name="broken"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="appium.android.tests" />
+        </packages>
+    </test>
+</suite>
