@@ -1,6 +1,7 @@
 package appium.android.automation.utils;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 
@@ -38,5 +39,9 @@ public class Interactions {
         isVisibleComponentAssert(by);
         Actions actions = new Actions(getDriver());
         actions.clickAndHold(getDriver().findElement(by)).perform();
+    }
+
+    public static void reciveSMSAndroid(String fromNumber, String message) {
+        ((AndroidDriver<?>) getDriver()).sendSMS(fromNumber, message);
     }
 }

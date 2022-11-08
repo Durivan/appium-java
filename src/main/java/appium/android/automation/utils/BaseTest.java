@@ -59,7 +59,7 @@ public class BaseTest {
         desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android SDK built for x86");
         desiredCapabilities.setCapability("appPackage", "com.android.contacts");
         desiredCapabilities.setCapability("appActivity", ".activities.PeopleActivity");
-        //desiredCapabilities.setCapability(MobileCapabilityType.APP, System.getProperty("user.dir") + "/src/test/resources/testApp.apk");
+        //desiredCapabilities.setCapability(MobileCapabilityType.APP, System.getProperty("user.dir") + "/src/test/resources/appDePruebas.apk");
         return new AndroidDriver<>(this.service.getUrl(), desiredCapabilities);
     }
 
